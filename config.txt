@@ -1,0 +1,9 @@
+textDir = E:\Work\rapyouself2\RapYouself_vn_815\NUS\text
+f0Dir = E:\Work\XiaoIce\NUS\f0
+offlineDir =E:\offline_0629
+script2wavConf =E:\Work\rapyouself2\RapYouself_vn_815\NUS\ScriptToWave.config
+WorkDir = E:\Work\rapyouself2\RapYouself_vn_815
+fontPath = E:\Work\rapyouself2\RapYouself_vn_815\zo\1033
+localHandlerPath =E:\Work\rapyouself2\RapYouself_vn_815\zo
+outputDir=E:\Work\rapyouself2\RapYouself_vn_815\NUS\Samples
+FfmpegPath=E:\Work\rapyouself2\RapYouself_vn_815\ffmpeg\bin\ffmpeg.exe

@@ -9,6 +9,7 @@ using SP = Microsoft.Tts.ServiceProvider;
 using Microsoft.Tts.ServiceProvider;
 using _Jie_OfflineTools;
 using System.IO;
+using System.Xml;
 
 namespace RapYouself
 {
@@ -27,22 +28,82 @@ namespace RapYouself
         {
             //if (args.Length >= 1)
             //{
-                //string file = args[0];
-                //if (File.Exists(file))
-                //{
-                    //add path to synsis
-                    string textDir = @"E:\Work\rapyouself2\RapYouself_vn_815\NUS\text";
-                    string f0Dir = @"E:\Work\rapyouself2\RapYouself_vn_815\NUS\f0";
-                    string offlineDir = @"E:\offline_0629";
-                    string script2wavConf = @"E:\Work\rapyouself2\RapYouself_vn_815\NUS\ScriptToWave.config";
-                    string outputDir = @"E:\Work\rapyouself2\RapYouself_vn_815\NUS\Samples";
-                    string FfmpegPath = @"E:\TTS_tool\ffmpeg-20161218-02aa070-win64-static\bin\ffmpeg.exe";
+            //string file = args[0];
+            //if (File.Exists(file))
+            //{
+            //add path to synsis
+            string config = args[0];
+            Dictionary<string, string> pathDic = new Dictionary<string, string>();
+            using (StreamReader srconfig = new StreamReader(config))
+            {
+                string strTempPath = "";
+                string[] strArr = { "", "" };
 
-                    string outputfile = "Syllables_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".wav";
+                do
+                {
+                    strTempPath = srconfig.ReadLine();
+                    if (strTempPath == "" || strTempPath == null) break;
+                    strTempPath.Trim();
+                    strArr = strTempPath.Split('=');
+                    strArr[0] = strArr[0].Trim();
+                    strArr[1] = strArr[1].Trim();
+                    pathDic[strArr[0]] = strArr[1];
+                    strArr[1] = strArr[1].ToUpper();
+                } while (strTempPath != "" && strTempPath != null);
+            }
+            string textDir = "";
+            string f0Dir = "";
+            string offlineDir = "";
+            string script2wavConf = "";
+            //string outputDir = "";
+            //string FfmpegPath = "";
+            string WorkDir = "";
+            string fontPath = "";
+            string localHandlerPath = "";
+            //string lyrics = "";
+            string outputDir = "";
+            string FfmpegPath = "";
+            List<string> configlist = new List<string>();
+            foreach (KeyValuePair<string, string> kvPath in pathDic)
+            {
+
+                if (kvPath.Key.Equals("f0Dir"))
+                { f0Dir = kvPath.Value; }
+                if (kvPath.Key.Equals("offlineDir"))
+                { offlineDir = kvPath.Value; }
+                if (kvPath.Key.Equals("script2wavConf"))
+                { script2wavConf = kvPath.Value; }
+                if (kvPath.Key.Equals("outputDir"))
+                { outputDir = kvPath.Value; }
+                if (kvPath.Key.Equals("FfmpegPath"))
+                { FfmpegPath = kvPath.Value; }
+                if (kvPath.Key.Equals("WorkDir"))
+                { WorkDir = kvPath.Value; }
+                if (kvPath.Key.Equals("fontPath"))
+                { fontPath = kvPath.Value; }
+                if (kvPath.Key.Equals("localHandlerPath"))
+                { localHandlerPath = kvPath.Value; }
+                if (kvPath.Key.Equals("textDir"))
+                { textDir = kvPath.Value; }
+                //if (kvPath.Key.Equals("lyrics"))
+                //{ lyrics = kvPath.Value; }
+            }
+
+
+
+
+            //string textDir = @"E:\Work\rapyouself2\RapYouself_vn_815\NUS\text";
+            //        string f0Dir = @"E:\Work\rapyouself2\RapYouself_vn_815\NUS\f0";
+            //        string offlineDir = @"E:\offline_0629";
+            //        string script2wavConf = @"E:\Work\rapyouself2\RapYouself_vn_815\NUS\ScriptToWave.config";
+                    //string outputDir = @"E:\Work\rapyouself2\RapYouself_vn_815\NUS\Samples";
+                    //string FfmpegPath = @"E:\TTS_tool\ffmpeg-20161218-02aa070-win64-static\bin\ffmpeg.exe";
+
+                    string outputfile = "WAV_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".wav";
                    
-                     string WorkDir = @"E:\Work\rapyouself2\RapYouself_vn_815";
-                    string fontPath = @"E:\Work\rapyouself2\RapYouself_vn_815\zo\1033";
-                    string localHandlerPath = @"E:\Work\rapyouself2\RapYouself_vn_815\zo";
+                    // string WorkDir = @"E:\Work\rapyouself2\RapYouself_vn_815";
+                    //string fontPath = @"E:\Work\rapyouself2\RapYouself_vn_815\zo\1033";
+                    //string localHandlerPath = @"E:\Work\rapyouself2\RapYouself_vn_815\zo";
                     string outAlignment = Path.Combine(WorkDir, @"outAlignment");
                     string subWavFileList = Path.Combine(WorkDir, @"TemplateWavs");
                     string logpath = Path.Combine(WorkDir, @"log");
@@ -153,7 +214,55 @@ namespace RapYouself
                   
                     
                 }
-                evaSinging_ProcessScript("en-us", textDir, WorkDir, offlineDir, outAlignment, f0Dir, script2wavConf);
+            //rewrite Scripttowave.config
+            string xmlcontext = File.ReadAllText(script2wavConf);
+            XmlDocument xmldoc = new XmlDocument();
+            xmldoc.LoadXml(xmlcontext);
+            XmlNode xn = xmldoc.DocumentElement;
+            XmlNodeList xnAll = xn.ChildNodes;
+            foreach (XmlNode node in xnAll)
+            {
+                XmlElement xe = (XmlElement)node;
+                //voice font
+                if (xe.Name.ToString().Equals("voiceFont"))
+                {
+                    XmlNodeList fonnode = node.ChildNodes;
+                    foreach (XmlNode nodef in fonnode)
+                    {
+                        if (nodef.Name == "fontPath")
+                        {
+                            nodef.Attributes["path"].Value = fontPath;
+                        }
+                        if (nodef.Name == "localeHandlerDir")
+                        {
+                            nodef.Attributes["path"].Value = localHandlerPath;
+                        }
+                    }
+                }
+                //out put
+                if (xe.Name.ToString().Equals("scriptSynthesizerCommonConfig"))
+                {
+
+                    XmlNodeList outnode = node.ChildNodes;
+                    foreach (XmlNode nodeO in outnode)
+                    {
+                        if (nodeO.Name == "outputWaveDir")
+                        {
+                            nodeO.Attributes["path"].Value = Path.Combine(WorkDir, @"Output_script2wav");
+                        }
+                        if (nodeO.Name == "traceLogFile")
+                        {
+                            nodeO.Attributes["path"].Value = Path.Combine(WorkDir, @"Output_script2wav", @"log.txt");
+                        }
+                    }
+
+                }
+            }
+
+            xmldoc.Save(script2wavConf);
+
+
+            evaSinging_ProcessScript("en-us", textDir, WorkDir, offlineDir, outAlignment, f0Dir, script2wavConf);
                 string outttsWave = Path.Combine(outputDir, outputfile);
                 string arg = string.Format("-f concat -safe 0 -i {0} -c copy {1}", filelist, outttsWave);
                 CommandLine.RunCommand(FfmpegPath, arg, null);
@@ -520,6 +629,29 @@ namespace RapYouself
 
 
                 //script2wav
+                //get durationtaggerpath file
+                List<string> durfilelist = new List<string>();
+                DirectoryInfo forder = new DirectoryInfo(durationTaggerPath);
+                foreach (FileInfo nefile in forder.GetFiles())
+                {
+                    durfilelist.Add(nefile.FullName);
+                }
+                //write config
+                string xmlcontext = File.ReadAllText(script2WavConf);
+                XmlDocument xmldoc = new XmlDocument();
+                xmldoc.LoadXml(xmlcontext);
+                XmlNode xn = xmldoc.DocumentElement;
+                XmlNodeList xnAll = xn.ChildNodes;
+                foreach (XmlNode node in xnAll)
+                {
+
+                    if (node.Name == "scriptPath")
+                    {
+                        node.Attributes["path"].Value = durfilelist[0];
+                    }
+
+                }
+                xmldoc.Save(script2WavConf);
 
                 arg = string.Format("-config {0}", script2WavConf);
                 string ScriptToWave = Path.Combine(offlineDir, @"ScriptToWave");
