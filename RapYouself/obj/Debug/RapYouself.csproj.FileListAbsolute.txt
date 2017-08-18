@@ -1,0 +1,27 @@
+E:\Work\RapYouself\RapYouself\obj\Debug\RapYouself.csprojResolveAssemblyReference.cache
+E:\Work\RapYouself\RapYouself\bin\Debug\RapYouself.exe
+E:\Work\RapYouself\RapYouself\bin\Debug\RapYouself.pdb
+E:\Work\RapYouself\RapYouself\obj\Debug\RapYouself.exe
+E:\Work\RapYouself\RapYouself\obj\Debug\RapYouself.pdb
+E:\Work\rapyouself2\RapYouself_stress\RapYouself\obj\Debug\RapYouself.exe
+E:\Work\rapyouself2\RapYouself_stress\RapYouself\obj\Debug\RapYouself.pdb
+E:\Work\rapyouself2\RapYouself_stress\RapYouself\bin\Debug\RapYouself.exe
+E:\Work\rapyouself2\RapYouself_stress\RapYouself\bin\Debug\RapYouself.pdb
+E:\Work\rapyouself2\RapYouself_stress\RapYouself\obj\Debug\RapYouself.csprojResolveAssemblyReference.cache
+E:\Work\rapyouself2\RapYouself_stress - meter\RapYouself\obj\Debug\RapYouself.exe
+E:\Work\rapyouself2\RapYouself_stress - meter\RapYouself\obj\Debug\RapYouself.pdb
+E:\Work\rapyouself2\RapYouself_stress - meter\RapYouself\bin\Debug\RapYouself.exe
+E:\Work\rapyouself2\RapYouself_stress - meter\RapYouself\bin\Debug\RapYouself.pdb
+E:\Work\rapyouself2\RapYouself_stress - meter\RapYouself\obj\Debug\RapYouself.csprojResolveAssemblyReference.cache
+E:\Work\rapyouself2\RapYouself_vn - meter-continues\RapYouself\obj\Debug\RapYouself.exe
+E:\Work\rapyouself2\RapYouself_vn - meter-continues\RapYouself\obj\Debug\RapYouself.pdb
+E:\Work\rapyouself2\RapYouself_vn - meter-continues -newforshow\RapYouself\obj\Debug\RapYouself.exe
+E:\Work\rapyouself2\RapYouself_vn - meter-continues -newforshow\RapYouself\obj\Debug\RapYouself.pdb
+E:\Work\rapyouself2\RapYouself_vn - meter-continues -newforshow\RapYouself\obj\Debug\RapYouself.csprojResolveAssemblyReference.cache
+E:\Work\rapyouself2\RapYouself_vn - meter-continues -newforshow\RapYouself\bin\Debug\RapYouself.exe
+E:\Work\rapyouself2\RapYouself_vn - meter-continues -newforshow\RapYouself\bin\Debug\RapYouself.pdb
+E:\Work\rapyouself2\RapYouself_vn_815\RapYouself\obj\Debug\RapYouself.exe
+E:\Work\rapyouself2\RapYouself_vn_815\RapYouself\obj\Debug\RapYouself.pdb
+E:\Work\rapyouself2\RapYouself_vn_815\RapYouself\bin\Debug\RapYouself.exe
+E:\Work\rapyouself2\RapYouself_vn_815\RapYouself\bin\Debug\RapYouself.pdb
+E:\Work\rapyouself2\RapYouself_vn_815\RapYouself\obj\Debug\RapYouself.csprojResolveAssemblyReference.cache

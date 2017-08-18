@@ -1,0 +1,12 @@
+﻿m0 bt4:I
+m1 bt1:walk
+m1 bt2:these
+m1 bt3:streets
+m1 bt4:sil
+m2 bt1:searching
+m2 bt1.5:searching
+m2 bt2:to
+m2 bt3:find
+m2 bt4:the
+m3 bt1:steps
+m3 bt2:that
